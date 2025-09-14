@@ -1,0 +1,24 @@
+version: "1.0"
+config:
+  - stage: boot
+    tasks:
+      - task: extendRootPartition
+
+  - stage: preReady
+    tasks:
+      - task: activateWindows
+        inputs:
+          activation:
+            type: amazon
+
+      - task: setAdminAccount
+        inputs:
+          password:
+            type: random
+            encrypt: true
+            transmit: true
+
+  - stage: postReady
+    tasks:
+      - task: setRdp
+      - task: startSsm
